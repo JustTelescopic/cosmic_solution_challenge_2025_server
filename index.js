@@ -1,5 +1,5 @@
 import express from "express";
-import { GeminiCattle, GeminiPlant } from "./api/gemini.js";
+import { GeminiCattle, GeminiFruits } from "./api/gemini.js";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -47,7 +47,7 @@ app.post("/cattle", (req, res) => {
 });
 
 app.post("/fruits", (req, res) => {
-  handleImageProcessing(req, res, GeminiPlant);
+  handleImageProcessing(req, res, GeminiFruits);
 });
 
 app.listen(port, () => {
