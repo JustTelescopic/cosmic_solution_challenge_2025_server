@@ -46,7 +46,7 @@ app.post("/cattle", (req, res) => {
   handleImageProcessing(req, res, GeminiCattle);
 });
 
-app.post("/plant", (req, res) => {
+app.post("/fruits", (req, res) => {
   handleImageProcessing(req, res, GeminiPlant);
 });
 
