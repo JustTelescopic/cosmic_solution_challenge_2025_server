@@ -14,7 +14,7 @@ const __dirname = path.dirname(__filename);
 // Middleware to parse JSON bodies
 app.use(express.json({ limit: '50mb' })); // Limit increased to handle large base64 data
 
-app.post("/", async (req, res) => {
+app.post("/api/v2/upload", async (req, res) => {
   try {
     const { base64data } = req.body;
 
@@ -43,6 +43,10 @@ app.post("/", async (req, res) => {
     res.status(500).send("An error occurred while processing the image.");
   }
 });
+
+app.use('/',(req,res)=>{
+  res.send('<h1>hello world</h1>')
+})
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
