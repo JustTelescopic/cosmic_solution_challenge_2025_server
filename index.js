@@ -1,47 +1,53 @@
 import express from "express";
-import { Gemini } from "./api/gemini.js";
+import { GeminiCattle, GeminiPlant } from "./api/gemini.js";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from "url";
 
 const app = express();
 const port = 3000;
 
-// Create __dirname equivalent in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Middleware to parse JSON bodies
-app.use(express.json({ limit: '50mb' })); // Limit increased to handle large base64 data
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
 
-app.post("/", async (req, res) => {
+app.use(express.json({ limit: "50mb" }));
+async function handleImageProcessing(req, res, processingFunction) {
   try {
-    const { base64data } = req.body;
+    const { base64data, inputText } = req.body;
 
     if (!base64data) {
       return res.status(400).send("No base64 data provided.");
     }
 
-    // Extract and convert the Base64 string to a binary image file
-    const imageBuffer = Buffer.from(base64data.split(";base64,").pop(), "base64");
-    const imagePath = path.join(__dirname, "image.jpg");
-
-    // Save the image file
+    const imageBuffer = Buffer.from(
+      base64data.split(";base64,").pop(),
+      "base64"
+    );
+    const imagePath = path.join(uploadsDir, `image_${Date.now()}.jpg`);
     fs.writeFileSync(imagePath, imageBuffer);
 
     console.log("Image saved!");
 
-    // Call the Gemini function with the saved image path
-    const result = await Gemini(
-      "Tell me about this disease",
-      imagePath
-    );
+    const result = await processingFunction(inputText, imagePath);
 
     res.status(200).send(result);
   } catch (error) {
     console.error("Error:", error);
     res.status(500).send("An error occurred while processing the image.");
   }
+}
+
+app.post("/cattle", (req, res) => {
+  handleImageProcessing(req, res, GeminiCattle);
+});
+
+app.post("/plant", (req, res) => {
+  handleImageProcessing(req, res, GeminiPlant);
 });
 
 app.listen(port, () => {
