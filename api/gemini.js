@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { GoogleAIFileManager } from "@google/generative-ai/server";
 
-export async function GeminiPlant(textInput, imagePath) {
+export async function GeminiFruits(textInput, imagePath) {
   const genAI = new GoogleGenerativeAI(
     "AIzaSyBqv7SOSbm05gZTACMwQkqjmUBlrkJg74Q"
   );
