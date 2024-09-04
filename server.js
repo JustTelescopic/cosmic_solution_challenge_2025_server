@@ -61,7 +61,7 @@ app.post("/cattle",upload.single('file'), (req, res) => {
 
 });
 
-app.post("/fruits", (req, res) => {
+app.post("/fruits",upload.single('file'), (req, res) => {
   handleImageProcessing(req, res, GeminiFruits);
 });
 
