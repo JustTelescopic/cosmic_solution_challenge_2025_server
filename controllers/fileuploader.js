@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { Gemini } from '../api/gemini.js';
+import { GeminiCattle,GeminiFruits } from '../api/gemini.js';
 
 export const createPost = async (req, res) => {  
   const localFilePath = req.file.path;
@@ -16,7 +16,7 @@ export const createPost = async (req, res) => {
     // // Set a delay (e.g., 5 seconds) before deleting the file
     // });
     // Call the Gemini function with the saved image path
-    const result = await Gemini(
+    const result = await GeminiCattle(
       "Tell me about this disease",
         localFilePath
     );
