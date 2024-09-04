@@ -163,3 +163,80 @@ export async function GeminiCattle(textInput, imagePath) {
     throw error;
   }
 }
+export async function GeminiVegetables(textInput, imagePath) {
+  const genAI = new GoogleGenerativeAI(
+    "AIzaSyBqv7SOSbm05gZTACMwQkqjmUBlrkJg74Q"
+  );
+  const fileManager = new GoogleAIFileManager(
+    "AIzaSyBqv7SOSbm05gZTACMwQkqjmUBlrkJg74Q"
+  );
+  const model = genAI.getGenerativeModel({
+    model: "gemini-1.5-flash",
+    generationConfig: {
+      candidateCount: 1,
+      topP: 0.95,
+      topK: 64,
+      maxOutputTokens: 8192,
+      temperature: 2.0,
+      responseMimeType: "application/json",
+    },
+    systemInstruction: `
+    Create a structured AI-generated report for diagnosing plant diseases.The report should be clear, concise, and visually appealing, formatted for mobile viewing.The report should include the following sections:
+    
+    Disease Recognized:
+    Severity: Indicate the level of severity (e.g., Low, Medium, High).
+    
+    Description: Provide a brief overview of the disease, including the pathogen causing it, the plants it affects, and the potential damage or yield loss 
+    it can cause if not treated properly.
+    
+    Treatment Plan:
+    Give 3 main imp treatment plan with description in 1-2 lines
+    
+    Preventive Measures:
+    Give 2 main imp preventive measures with description in 1-2 lines
+    
+    Actionable insights :
+    Give 4 pointer words (1,2,3,4) no desc only imp words as actionable steps
+
+    Additional Notes:
+    Provide a short note on the importance of monitoring weather conditions, as certain weather patterns can increase disease risk. Emphasize the need for regular plant inspections and immediate action when symptoms are detected. Highlight the importance of proper storage of harvested crops to prevent the spread of diseases. (only 2-3 lines no pointer/points)
+    
+    Knowledge Base for your understanding you can refer from here:
+    https://www.mdpi.com/2073-4395/13/7/1700
+    https://www.ijetcse.com/admin/uploads/Disease%20Detection%20in%20Vegetables%20Using%20Image%20Processing%20Techniques:%20A%20Review_1605597006.pdf
+    https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2024.1356260/full
+    https://www.nature.com/articles/s41598-024-54540-9
+    https://www.researchgate.net/profile/Pradeep-Jha-10/publication/379574137_Implementation_of_Machine_Learning_Classification_Algorithm_Based_on_Ensemble_Learning_for_Detection_of_Vegetable_Crops_Disease/links/660fc8c7390c214cfd362018/Implementation-of-Machine-Learning-Classification-Algorithm-Based-on-Ensemble-Learning-for-Detection-of-Vegetable-Crops-Disease.pdf
+    https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10458943
+    https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2024.1355941/full
+    `,
+  });
+
+  try {
+    // Directly use the imagePath provided
+    const uploadResult = await fileManager.uploadFile(imagePath, {
+      mimeType: "image/jpeg", // You can customize the MIME type if needed
+      displayName: "Uploaded image",
+    });
+
+    console.log(
+      `Uploaded file ${uploadResult.file.displayName} as: ${uploadResult.file.uri}`
+    );
+
+    const result = await model.generateContent([
+      textInput,
+      {
+        fileData: {
+          fileUri: uploadResult.file.uri,
+          mimeType: uploadResult.file.mimeType,
+        },
+      },
+    ]);
+
+    console.log(result.response.text());
+    return result;
+  } catch (error) {
+    console.error("Error during image processing or upload:", error);
+    throw error;
+  }
+}
