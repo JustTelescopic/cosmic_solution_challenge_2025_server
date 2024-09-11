@@ -65,3 +65,7 @@ You must connect your mobile device to the **hotspot** of your laptop, ensuring 
 
 
 
+### Sever : 
+https://github.com/Harshal-3558/Farmer-Livestock-Management-Server
+### Frontend : 
+https://github.com/Harshal-3558/Farmer-Livestock-Management
