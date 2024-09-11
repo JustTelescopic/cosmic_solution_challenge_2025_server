@@ -3,10 +3,10 @@ import { GoogleAIFileManager } from "@google/generative-ai/server";
 
 export async function GeminiFruits(textInput, imagePath) {
   const genAI = new GoogleGenerativeAI(
-    "AIzaSyBqv7SOSbm05gZTACMwQkqjmUBlrkJg74Q"
+    "AIzaSyAAA5bDGrVQtU4nxkdsg723lOatEuSBJf0"
   );
   const fileManager = new GoogleAIFileManager(
-    "AIzaSyBqv7SOSbm05gZTACMwQkqjmUBlrkJg74Q"
+    "AIzaSyAAA5bDGrVQtU4nxkdsg723lOatEuSBJf0"
   );
   const model = genAI.getGenerativeModel({
     model: "gemini-1.5-flash",
@@ -87,10 +87,10 @@ export async function GeminiFruits(textInput, imagePath) {
 export async function GeminiCattle(inputText, imagePath) {
   console.log({inputText,imagePath})
   const genAI = new GoogleGenerativeAI(
-    "AIzaSyBqv7SOSbm05gZTACMwQkqjmUBlrkJg74Q"
+    "AIzaSyAAA5bDGrVQtU4nxkdsg723lOatEuSBJf0"
   );
   const fileManager = new GoogleAIFileManager(
-    "AIzaSyBqv7SOSbm05gZTACMwQkqjmUBlrkJg74Q"
+    "AIzaSyAAA5bDGrVQtU4nxkdsg723lOatEuSBJf0"
   );
   const model = genAI.getGenerativeModel({
     model: "gemini-1.5-flash",
@@ -167,10 +167,10 @@ export async function GeminiCattle(inputText, imagePath) {
 }
 export async function GeminiVegetables(textInput, imagePath) {
   const genAI = new GoogleGenerativeAI(
-    "AIzaSyBqv7SOSbm05gZTACMwQkqjmUBlrkJg74Q"
+    "AIzaSyAAA5bDGrVQtU4nxkdsg723lOatEuSBJf0"
   );
   const fileManager = new GoogleAIFileManager(
-    "AIzaSyBqv7SOSbm05gZTACMwQkqjmUBlrkJg74Q"
+    "AIzaSyAAA5bDGrVQtU4nxkdsg723lOatEuSBJf0"
   );
   const model = genAI.getGenerativeModel({
     model: "gemini-1.5-flash",
