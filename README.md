@@ -66,8 +66,7 @@ You must connect your mobile device to the **hotspot** of your laptop, ensuring 
 
 
 ### Sever : 
-[https://github.com/Harshal-3558/Farmer-Livestock-Management-Server
-](https://github.com/JustTelescopic/cosmic_solution_challenge_2025_server.git)
+[https://github.com/Harshal-3558/Farmer-Livestock-Management-Server](https://github.com/JustTelescopic/cosmic_solution_challenge_2025_server.git)
 
 ### Frontend : 
 [https://github.com/JustTelescopic/Cosmic_Google_Solution_Challenge](https://github.com/JustTelescopic/cosmic_solution_challenge_2025_server.git)
