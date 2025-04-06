@@ -69,4 +69,4 @@ You must connect your mobile device to the **hotspot** of your laptop, ensuring 
 [https://github.com/JustTelescopic/cosmic_solution_challenge_2025_Server](https://github.com/JustTelescopic/cosmic_solution_challenge_2025_server.git)
 
 ### Frontend : 
-[https://github.com/JustTelescopic/Cosmic_Google_Solution_Challenge](https://github.com/JustTelescopic/cosmic_solution_challenge_2025_server.git)
+[https://github.com/JustTelescopic/cosmic_solution_challenge_2025_Server](https://github.com/JustTelescopic/Cosmic_Google_Solution_Challenge.git)
